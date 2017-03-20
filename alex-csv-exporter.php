@@ -28,9 +28,6 @@ function csvExporter(){
 
 
 if(isset($_POST["category_name"])){
-$uploads = wp_upload_dir();
-$upload_path = $uploads['baseurl'];
-
 
 					$cat_id = $_POST["category_name"];
 					$title = $_POST["title"];
@@ -46,26 +43,24 @@ $upload_path = $uploads['baseurl'];
 						$whatis_owner = str_replace(',', '' , get_post_meta( $post->ID, 'whatis_owner', true ));
 						$whatis_year = str_replace(',', '' , get_post_meta( $post->ID, 'whatis_year', true ));
 						
-
-
-						$collecTs .=$my_title.",".$whatis_owner.",".$whatis_year.",\r\n";
+						$collecTs .=$my_title.",\r\n";
 					endforeach; 
 
 					wp_reset_postdata();
 
-					echo $collecTs;
+					
 
 
-					$list = explode("-", $collecTs);
+					$list = explode(",", $collecTs);
 					
 					header('Content-type: text/csv');
-					header('Content-Disposition: attachment; filename="what_is.csv"');
+					header('Content-Disposition: attachment; filename="titles.csv"');
 
 					foreach ($list as $line) {
-					  $shtml=fputcsv($fh, explode(',',$line));
+					  echo $collecTs;
 					}
 					
-					fclose($fh);
+					
 
 					exit();
 
