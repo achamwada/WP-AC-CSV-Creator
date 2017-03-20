@@ -48,7 +48,7 @@ $upload_path = $uploads['baseurl'];
 						
 
 
-						$collecTs .=$my_title.",".$whatis_owner.",".$whatis_year.",\r\n";
+						$collecTs .=$my_title."\r\n";
 					endforeach; 
 
 					wp_reset_postdata();
@@ -65,7 +65,7 @@ $upload_path = $uploads['baseurl'];
 					  $shtml=fputcsv($fh, explode(',',$line));
 					}
 					
-					fclose($fh);
+					//fclose($fh);
 
 					exit();
 
